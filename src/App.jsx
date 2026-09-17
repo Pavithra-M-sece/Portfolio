@@ -12,6 +12,9 @@ export default function App() {
   const [page, setPage] = useState('home')
 
   useEffect(() => setMounted(true), [])
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [page])
 
   function renderPage() {
     switch (page) {
@@ -26,7 +29,7 @@ export default function App() {
     <div>
       <Nav current={page} onNavigate={setPage} />
       {renderPage()}
-      <Footer />
+      <Footer onNavigate={setPage} />
       {mounted && <LocalChatbot />}
     </div>
   )

@@ -1,9 +1,35 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import { HomepageStyle } from '../styles/homepage-style'
+
+const roles = ['AI Enthusiast', 'Software Developer', 'Problem Solver', 'Research Intern']
+const techStack = ['Python', 'AWS', 'TensorFlow', 'Django', 'React', 'MongoDB', 'OpenCV', 'Flask', 'Keras', 'SQL', 'JavaScript', 'NumPy']
 
 const Home = () => {
   const [contact, setContact] = useState({ name: '', email: '', message: '' });
   const [preview, setPreview] = useState(null)
+  const [roleIndex, setRoleIndex] = useState(0)
+  const [displayed, setDisplayed] = useState('')
+  const [typing, setTyping] = useState(true)
+
+  useEffect(() => {
+    const current = roles[roleIndex]
+    let timeout
+    if (typing) {
+      if (displayed.length < current.length) {
+        timeout = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 80)
+      } else {
+        timeout = setTimeout(() => setTyping(false), 1200)
+      }
+    } else {
+      if (displayed.length > 0) {
+        timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 40)
+      } else {
+        setRoleIndex(i => (i + 1) % roles.length)
+        setTyping(true)
+      }
+    }
+    return () => clearTimeout(timeout)
+  }, [displayed, typing, roleIndex])
 
   const skills = [
     { name: 'Python', level: 85 },
@@ -46,119 +72,87 @@ const Home = () => {
     setPreview(url)
   }
 
-  const profileSrc = '/photo.jpg';
-
   return (
     <div style={HomepageStyle.container}>
-      <style>
-        {`
-          @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-          }
-          @keyframes pulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.8; }
-          }
-          @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-          }
-
-
-        `}
-      </style>
+      <style>{`
+        @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+        @keyframes scrollTech { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+        @keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.8; } }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+      `}</style>
 
       <header style={HomepageStyle.hero}>
         <div style={HomepageStyle.heroContent}>
           <h1 style={HomepageStyle.heading}>Hi, I'm Pavithra M</h1>
-          <p style={HomepageStyle.subheading}>Computer Science Engineering Student & Aspiring Full-Stack Developer</p>
-          <p style={{marginTop: 24, fontSize: '1.1rem', lineHeight: 1.7}}>I'm a passionate CSE student at Sri Eshwar College of Engineering, specializing in web development with Python, Django, and modern web technologies. I love solving problems and building innovative solutions.</p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, margin: '12px 0 8px', height: 36 }}>
+            <span style={{ color: '#0ea5e9', fontSize: '1.2rem', fontWeight: 600 }}>{displayed}</span>
+            <span style={{ color: '#0ea5e9', fontSize: '1.2rem', animation: 'blink 1s infinite' }}>|</span>
+          </div>
+          <p style={{marginTop: 8, fontSize: '1.1rem', lineHeight: 1.7}}>I'm a passionate CSE student at Sri Eshwar College of Engineering, specializing in web development with Python, Django, and modern web technologies. I love solving problems and building innovative solutions.</p>
           <div style={{marginTop: 32, display: 'flex', gap: 16, flexWrap: 'wrap'}}>
-            <a 
-              href="#contact" 
+            <a
+              href="#contact"
               style={{
                 ...HomepageStyle.ctaButton,
                 background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                transition: 'all 0.3s ease',
-                position: 'relative',
-                overflow: 'hidden'
+                transition: 'all 0.3s ease'
               }}
-              onMouseEnter={(e) => {
-                e.target.style.transform = 'scale(1.05)';
-                e.target.style.boxShadow = '0 15px 35px rgba(102, 126, 234, 0.4)';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.transform = 'scale(1)';
-                e.target.style.boxShadow = '0 8px 25px rgba(14, 165, 233, 0.3)';
-              }}
+              onMouseEnter={(e) => { e.target.style.transform = 'scale(1.05)'; e.target.style.boxShadow = '0 15px 35px rgba(102, 126, 234, 0.4)'; }}
+              onMouseLeave={(e) => { e.target.style.transform = 'scale(1)'; e.target.style.boxShadow = '0 8px 25px rgba(14, 165, 233, 0.3)'; }}
             >
               Get In Touch ✨
             </a>
-            <a 
-              href="#projects" 
+            <a
+              href="#projects"
               style={{
-                ...HomepageStyle.ctaButton, 
-                background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', 
-                color: 'white', 
-                border: 'none',
-                transition: 'all 0.3s ease'
+                ...HomepageStyle.ctaButton,
+                background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                color: 'white', border: 'none', transition: 'all 0.3s ease'
               }}
-              onMouseEnter={(e) => {
-                e.target.style.transform = 'scale(1.05)';
-                e.target.style.boxShadow = '0 15px 35px rgba(240, 147, 251, 0.4)';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.transform = 'scale(1)';
-                e.target.style.boxShadow = '0 8px 25px rgba(240, 147, 251, 0.3)';
-              }}
+              onMouseEnter={(e) => { e.target.style.transform = 'scale(1.05)'; e.target.style.boxShadow = '0 15px 35px rgba(240, 147, 251, 0.4)'; }}
+              onMouseLeave={(e) => { e.target.style.transform = 'scale(1)'; e.target.style.boxShadow = '0 8px 25px rgba(240, 147, 251, 0.3)'; }}
             >
               View Projects
             </a>
           </div>
-          
+
           <div style={{marginTop: 24, display: 'flex', gap: 20, alignItems: 'center', flexWrap: 'wrap'}}>
             <span style={{color: '#64748b', fontSize: '1rem'}}>Connect with me:</span>
-            <a href="mailto:pavithra.m2024cse@sece.ac.in?subject=Hello from Portfolio" style={{color: '#0ea5e9', fontSize: '1rem', textDecoration: 'none', fontWeight: 500}} title="Send Email">
-              Email
-            </a>
-            <a href="https://www.linkedin.com/in/pavithra-m-005a70333/" target="_blank" rel="noopener noreferrer" style={{color: '#0ea5e9', fontSize: '1rem', textDecoration: 'none', fontWeight: 500}} title="LinkedIn">
-              LinkedIn
-            </a>
-            <a href="https://github.com/Pavithra-M-sece" target="_blank" rel="noopener noreferrer" style={{color: '#0ea5e9', fontSize: '1rem', textDecoration: 'none', fontWeight: 500}} title="GitHub">
-              GitHub
-            </a>
+            <a href="mailto:pavithra.m2024cse@sece.ac.in?subject=Hello from Portfolio" style={{color: '#0ea5e9', fontSize: '1rem', textDecoration: 'none', fontWeight: 500}}>Email</a>
+            <a href="https://www.linkedin.com/in/pavithra-m-005a70333/" target="_blank" rel="noopener noreferrer" style={{color: '#0ea5e9', fontSize: '1rem', textDecoration: 'none', fontWeight: 500}}>LinkedIn</a>
+            <a href="https://github.com/Pavithra-M-sece" target="_blank" rel="noopener noreferrer" style={{color: '#0ea5e9', fontSize: '1rem', textDecoration: 'none', fontWeight: 500}}>GitHub</a>
+          </div>
+
+          <div style={{ marginTop: 40, overflow: 'hidden' }}>
+            <p style={{ color: '#64748b', fontSize: '0.75rem', letterSpacing: 3, textTransform: 'uppercase', marginBottom: 12 }}>Tech Stack</p>
+            <div style={{ display: 'flex', width: 'max-content', animation: 'scrollTech 20s linear infinite' }}>
+              {[...techStack, ...techStack].map((tech, i) => (
+                <span key={i} style={{
+                  padding: '6px 16px', margin: '0 6px',
+                  background: 'linear-gradient(135deg, #e0f2fe, #f0f9ff)',
+                  border: '1px solid #bae6fd',
+                  borderRadius: 20, color: '#0369a1', fontSize: '0.82rem', fontWeight: 500,
+                  whiteSpace: 'nowrap'
+                }}>{tech}</span>
+              ))}
+            </div>
           </div>
         </div>
-        <div style={{textAlign: 'center'}}>
-          <div style={{
-            position: 'relative',
-            display: 'inline-block'
-          }}>
 
-            
-            <img 
-              src={preview || '/photo.jpg'} 
-              alt="Profile" 
-              style={{
-                ...HomepageStyle.profileImage,
-                position: 'relative',
-                zIndex: 1,
-                transition: 'all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-                cursor: 'pointer',
-                filter: 'brightness(1.1) contrast(1.05)'
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.transform = 'scale(1.15)';
-                e.target.style.filter = 'brightness(1.2) contrast(1.1) saturate(1.2)';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.transform = 'scale(1)';
-                e.target.style.filter = 'brightness(1.1) contrast(1.05)';
-              }}
-              onError={(e)=>{e.currentTarget.src='https://via.placeholder.com/300x300/0ea5e9/ffffff?text=PM';}} 
-            />
-          </div>
+        <div style={{textAlign: 'center'}}>
+          <img
+            src={preview || '/photo.jpg'}
+            alt="Profile"
+            style={{
+              ...HomepageStyle.profileImage,
+              transition: 'all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+              cursor: 'pointer', filter: 'brightness(1.1) contrast(1.05)'
+            }}
+            onMouseEnter={(e) => { e.target.style.transform = 'scale(1.15)'; e.target.style.filter = 'brightness(1.2) contrast(1.1) saturate(1.2)'; }}
+            onMouseLeave={(e) => { e.target.style.transform = 'scale(1)'; e.target.style.filter = 'brightness(1.1) contrast(1.05)'; }}
+            onError={(e) => { e.currentTarget.src = 'https://via.placeholder.com/300x300/0ea5e9/ffffff?text=PM'; }}
+          />
           <div style={{marginTop: 20, padding: 16, background: 'rgba(255,255,255,0.8)', borderRadius: 12}}>
             <label style={{fontSize: 14, color: '#64748b', fontWeight: 500}}>Upload photo (preview):</label>
             <input type="file" accept="image/*" onChange={handleFile} style={{display: 'block', marginTop: 8, fontSize: 12}} />

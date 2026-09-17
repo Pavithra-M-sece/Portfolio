@@ -39,6 +39,18 @@ const projectsData = [
     date: 'November 2024'
   },
   {
+    id: 'p5',
+    title: 'Image Colourisation',
+    summary: 'AI-powered web app that colorizes black & white images using a U-Net CNN model with a Flask backend and MongoDB authentication.',
+    details: 'A full-stack AI Image Colorization platform where users upload grayscale or black & white photos and receive AI-colorized results in seconds. Built with a U-Net style encoder-decoder CNN trained on 1500+ image pairs. Features user authentication (register/login), an admin dashboard to manage users and monitor activity, automatic file format conversion (WEBP, TIFF, ICO, etc.) with user permission before colorizing, and a modern animated dark-purple UI with glassmorphism cards and interactive dot canvas. All user data and colorization history is stored persistently in MongoDB.',
+    image: 'linear-gradient(135deg, #f7971e 0%, #ffd200 100%)',
+    technologies: ['Python', 'Flask', 'TensorFlow', 'Keras', 'OpenCV', 'PIL/Pillow', 'NumPy', 'MongoDB'],
+    liveUrl: '#',
+    githubUrl: 'https://github.com/Pavithra-M-sece/Image_Colourisation',
+    featured: true,
+    date: 'December 2024'
+  },
+  {
     id: 'p4',
     title: 'Portfolio Website',
     summary: 'Modern portfolio with interactive elements and animations',

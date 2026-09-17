@@ -380,7 +380,7 @@ export default function About() {
         <div style={{marginTop: 60}}>
           <h3 style={{fontSize: '2rem', marginBottom: 32, textAlign: 'center', color: '#1e293b'}}>Competitive Programming Profile</h3>
           <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 24}}>
-            <a href="https://leetcode.com/u/Pavithra_mano/" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}>
+            <a href="https://leetcode.com/u/pavithra_168/" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}>
               <div style={{...HomepageStyle.card, padding: 24, cursor: 'pointer', transition: 'all 0.3s ease'}} 
                    onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
                    onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
@@ -390,7 +390,7 @@ export default function About() {
                 </div>
                 <p style={{color: '#0ea5e9', fontWeight: 600, marginBottom: 8, fontSize: '1.1rem'}}>80+ Problems Solved</p>
                 <p style={{color: '#64748b', fontSize: '0.95rem', marginBottom: 4}}>Global Rank: 1,418,175</p>
-                <p style={{color: '#64748b', fontSize: '0.9rem'}}>Username: Pavithra_mano</p>
+                <p style={{color: '#64748b', fontSize: '0.9rem'}}>Username: pavithra_168</p>
               </div>
             </a>
             

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Footer() {
+export default function Footer({ onNavigate }) {
   const footerStyle = {
     background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)',
     color: 'white',
@@ -29,6 +29,26 @@ export default function Footer() {
     alignItems: 'center',
     gap: 8,
     transition: 'color 0.2s ease'
+  };
+
+  const quickLinkStyle = {
+    ...linkStyle,
+    background: 'none',
+    border: 'none',
+    padding: 0,
+    cursor: 'pointer',
+    font: 'inherit',
+    textAlign: 'left'
+  };
+
+  const goHome = () => onNavigate?.('home');
+  const goAbout = () => onNavigate?.('about');
+  const goProjects = () => onNavigate?.('projects');
+  const goContact = () => {
+    onNavigate?.('home');
+    window.setTimeout(() => {
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
   };
 
   const socialLinksStyle = {
@@ -100,15 +120,15 @@ export default function Footer() {
 
         <div style={sectionStyle}>
           <h4 style={{color: 'white', marginBottom: 8}}>Quick Links</h4>
-          <a href="#home" style={linkStyle}>🏠 Home</a>
-          <a href="#about" style={linkStyle}>👤 About</a>
-          <a href="#projects" style={linkStyle}>💻 Projects</a>
-          <a href="#contact" style={linkStyle}>📞 Contact</a>
+          <button type="button" onClick={goHome} style={quickLinkStyle}>🏠 Home</button>
+          <button type="button" onClick={goAbout} style={quickLinkStyle}>👤 About</button>
+          <button type="button" onClick={goProjects} style={quickLinkStyle}>💻 Projects</button>
+          <button type="button" onClick={goContact} style={quickLinkStyle}>📞 Contact</button>
         </div>
 
         <div style={sectionStyle}>
           <h4 style={{color: 'white', marginBottom: 8}}>Coding Profiles</h4>
-          <a href="https://leetcode.com/u/Pavithra_mano/" target="_blank" rel="noopener noreferrer" style={linkStyle}>
+          <a href="https://leetcode.com/u/pavithra_168/" target="_blank" rel="noopener noreferrer" style={linkStyle}>
             🔥 LeetCode
           </a>
           <a href="https://www.skillrack.com/faces/resume.xhtml?id=515019&key=ec99021f0f8e3a4ae428457e5a8023dc40176ed0" target="_blank" rel="noopener noreferrer" style={linkStyle}>
