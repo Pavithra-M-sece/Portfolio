@@ -1,353 +1,247 @@
 import React, { useState } from 'react'
-import { HomepageStyle } from '../styles/homepage-style'
 
-const projectsData = [
+const PROJECTS = [
   {
-    id: 'p1',
-    title: 'Curetech - Medical Diagnosis Assistant',
-    summary: 'AI-powered medical diagnosis system helping patients and doctors',
-    details: 'Medical Diagnosis Assistant helps patients and doctors by analyzing symptoms, suggesting possible conditions and providing treatment guidance. It improves decision making, ensures quick access to medical information and supports early disease detection. Built with Python Django framework and MongoDB for robust data management.',
-    image: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    technologies: ['Python', 'Django', 'MongoDB', 'HTML', 'CSS'],
-    liveUrl: '#',
-    githubUrl: '#',
-    featured: true,
-    date: 'July 2025'
+    id: 'stocksense', title: 'StockSense', featured: true,
+    category: 'Data Analytics · Machine Learning',
+    tagline: 'Intelligent inventory analytics and demand forecasting platform.',
+    description: 'An intelligent inventory analytics and demand forecasting platform that analyses historical sales data, predicts future demand, identifies stock-out risks, and provides explainable inventory replenishment recommendations.',
+    features: ['Exploratory data analysis on historical sales data', 'Demand forecasting using XGBoost', 'Inventory risk identification and stock-out alerts', 'Explainable ML with feature importance insights', 'Replenishment recommendations engine', 'Interactive Streamlit analytics dashboard'],
+    metrics: [{ label: 'MAE', value: '4.876' }, { label: 'RMSE', value: '6.767' }, { label: 'MAPE', value: '8.377%' }, { label: 'R²', value: '0.978' }],
+    metricsNote: 'Reported evaluation results on test data.',
+    techs: ['Python', 'Pandas', 'XGBoost', 'Streamlit', 'Machine Learning', 'Data Analytics'],
+    color: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    githubUrl: null, liveUrl: null,
   },
   {
-    id: 'p2',
-    title: 'Certgen - Online Certification System',
-    summary: 'Automated digital certificate creation and verification platform',
-    details: 'An online certification system that automates the creation, verification, and distribution of digital certificates. It ensures authenticity, enhanced security, reduces manual efforts and allows organizations to access easily and validate credentials. Features secure certificate generation and blockchain-based verification.',
-    image: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-    technologies: ['Python', 'Django', 'MongoDB', 'HTML', 'CSS'],
-    liveUrl: '#',
-    githubUrl: '#',
-    featured: true,
-    date: 'May 2025'
+    id: 'civicmind', title: 'CivicMindAI', featured: true,
+    category: 'Artificial Intelligence · Civic Technology',
+    tagline: 'AI-powered civic grievance processing and departmental routing platform.',
+    description: 'An AI-powered civic grievance processing and intelligent departmental routing platform designed to improve complaint management through automation and intelligent analysis.',
+    features: ['Citizen grievance submission portal', 'Automated complaint classification', 'AI-based priority prediction', 'Duplicate complaint detection', 'Intelligent departmental routing', 'Complaint status tracking', 'Officer assistance interface', 'Risk visualisation module'],
+    metrics: [], metricsNote: '',
+    techs: ['React', 'Node.js', 'Express.js', 'MongoDB', 'AI/ML', 'NLP'],
+    color: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+    githubUrl: null, liveUrl: null,
   },
   {
-    id: 'p3',
-    title: 'Letslearn - E-Learning Platform',
-    summary: 'Interactive online learning platform with courses and assessments',
-    details: 'An e-learning platform that offers interactive courses, digital study materials, and assessments for learners. It enables flexible, self-paced learning, supports real-time progress tracking, and delivers personalized educational experiences accessible anytime, anywhere. Built with modern web technologies for optimal user experience.',
-    image: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-    technologies: ['HTML', 'CSS', 'JavaScript'],
-    liveUrl: '#',
-    githubUrl: '#',
-    featured: false,
-    date: 'November 2024'
+    id: 'heritage', title: 'TN HeritageGuide', featured: true,
+    category: 'Generative AI · Data Engineering · RAG',
+    tagline: 'AI-powered Tamil Nadu heritage information assistant using RAG.',
+    description: 'An AI-powered Tamil Nadu heritage information assistant that uses Retrieval-Augmented Generation to provide contextual, accurate information about historical monuments, temples, and heritage destinations.',
+    features: ['Heritage data collection and curation pipeline', 'Data processing and document chunking', 'Vector embeddings for semantic search', 'Hybrid search combining BM25 and FAISS', 'Context-aware response generation', 'LLaMA-powered natural language interface'],
+    metrics: [], metricsNote: '',
+    techs: ['Python', 'RAG', 'FAISS', 'BM25', 'LangChain', 'Gradio', 'LLaMA'],
+    color: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+    githubUrl: null, liveUrl: null,
   },
   {
-    id: 'p5',
-    title: 'Image Colourisation',
-    summary: 'AI-powered web app that colorizes black & white images using a U-Net CNN model with a Flask backend and MongoDB authentication.',
-    details: 'A full-stack AI Image Colorization platform where users upload grayscale or black & white photos and receive AI-colorized results in seconds. Built with a U-Net style encoder-decoder CNN trained on 1500+ image pairs. Features user authentication (register/login), an admin dashboard to manage users and monitor activity, automatic file format conversion (WEBP, TIFF, ICO, etc.) with user permission before colorizing, and a modern animated dark-purple UI with glassmorphism cards and interactive dot canvas. All user data and colorization history is stored persistently in MongoDB.',
-    image: 'linear-gradient(135deg, #f7971e 0%, #ffd200 100%)',
-    technologies: ['Python', 'Flask', 'TensorFlow', 'Keras', 'OpenCV', 'PIL/Pillow', 'NumPy', 'MongoDB'],
-    liveUrl: '#',
-    githubUrl: 'https://github.com/Pavithra-M-sece/Image_Colourisation',
-    featured: true,
-    date: 'December 2024'
+    id: 'curetech', title: 'Curetech', featured: false,
+    category: 'Web Development · Healthcare',
+    tagline: 'Medical diagnosis assistant for patients and doctors.',
+    description: 'Medical Diagnosis Assistant that helps patients and doctors by analysing symptoms, suggesting possible conditions, and providing treatment guidance.',
+    features: ['Symptom analysis and condition suggestions', 'Treatment guidance module', 'Patient and doctor interfaces', 'MongoDB-backed data management'],
+    metrics: [], metricsNote: '',
+    techs: ['Python', 'Django', 'MongoDB', 'HTML', 'CSS'],
+    color: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+    githubUrl: null, liveUrl: null,
   },
   {
-    id: 'p4',
-    title: 'Portfolio Website',
-    summary: 'Modern portfolio with interactive elements and animations',
-    details: 'This very portfolio website you\'re viewing! Built with React and Vite, featuring smooth animations, responsive design, chatbot integration, and optimized performance. Includes contact forms, project showcases, and modern UI components.',
-    image: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
-    technologies: ['React', 'Vite', 'CSS3', 'JavaScript'],
-    liveUrl: '#',
-    githubUrl: '#',
-    featured: false,
-    date: 'Current'
-  }
+    id: 'certgen', title: 'Certgen', featured: false,
+    category: 'Web Development · Automation',
+    tagline: 'Automated digital certificate creation and verification platform.',
+    description: 'An online certification system that automates the creation, verification, and distribution of digital certificates.',
+    features: ['Automated certificate generation', 'Secure verification system', 'Digital certificate distribution', 'Organisation management portal'],
+    metrics: [], metricsNote: '',
+    techs: ['Python', 'Django', 'MongoDB', 'HTML', 'CSS'],
+    color: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+    githubUrl: null, liveUrl: null,
+  },
+  {
+    id: 'imagecolour', title: 'Image Colourisation', featured: false,
+    category: 'Deep Learning · Computer Vision',
+    tagline: 'AI-powered grayscale image colourisation using a U-Net CNN model.',
+    description: 'A full-stack AI Image Colourisation platform where users upload grayscale photos and receive AI-colourised results. Built with a U-Net encoder-decoder CNN trained on 1500+ image pairs.',
+    features: ['U-Net CNN model trained on 1500+ image pairs', 'User registration and session management', 'Admin dashboard', 'Automatic file format conversion', 'Colourisation history in MongoDB'],
+    metrics: [], metricsNote: '',
+    techs: ['Python', 'Flask', 'TensorFlow', 'Keras', 'OpenCV', 'NumPy', 'MongoDB'],
+    color: 'linear-gradient(135deg, #f7971e 0%, #ffd200 100%)',
+    githubUrl: 'https://github.com/Pavithra-M-sece/Image_Colourisation', liveUrl: null,
+  },
 ]
 
 export default function Projects() {
   const [selected, setSelected] = useState(null)
-  const [filter, setFilter] = useState('all')
+  const [filter,   setFilter]   = useState('all')
 
-  const filteredProjects = filter === 'featured' 
-    ? projectsData.filter(p => p.featured)
-    : projectsData
-
-  const filterButtonStyle = (active) => ({
-    padding: '8px 16px',
-    borderRadius: 20,
-    border: 'none',
-    background: active ? 'linear-gradient(135deg, #0ea5e9, #06b6d4)' : 'transparent',
-    color: active ? 'white' : '#64748b',
-    cursor: 'pointer',
-    fontWeight: active ? 600 : 500,
-    transition: 'all 0.2s ease'
-  })
-
-
-
-  const modalStyle = {
-    position: 'fixed',
-    inset: 0,
-    background: 'rgba(0,0,0,0.6)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 9999,
-    padding: 20
-  }
-
-  const modalContentStyle = {
-    width: '100%',
-    maxWidth: 800,
-    background: '#fff',
-    padding: 40,
-    borderRadius: 16,
-    boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
-    maxHeight: '90vh',
-    overflowY: 'auto'
-  }
+  const displayed = filter === 'featured' ? PROJECTS.filter(p => p.featured) : PROJECTS
 
   return (
-    <div style={{...HomepageStyle.container, paddingTop: 40}}>
-      <style>
-        {`
-          @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-          }
-        `}
-      </style>
-      <section style={HomepageStyle.section}>
-        <h2 style={HomepageStyle.sectionTitle}>My Projects</h2>
-        <p style={{textAlign: 'center', fontSize: '1.1rem', color: '#64748b', marginBottom: 40}}>
-          Here are some of the projects I've worked on. Each one represents a unique challenge and learning experience.
+    <article style={{ background: 'var(--bg-primary)', padding: '90px 0 72px' }}>
+      <style>{`
+        @keyframes shimmer { 0%{transform:translateX(-100%)} 100%{transform:translateX(100%)} }
+        .proj-card { cursor: pointer; overflow: hidden; padding: 0; }
+        .proj-card:hover .proj-view { opacity: 1 !important; }
+      `}</style>
+
+      <div className="container">
+        <span className="section-label">Work</span>
+        <h2 className="section-title">My Projects</h2>
+        <p className="section-sub">
+          A collection of engineering projects focused on intelligent systems, data analytics, and real-world problem solving.
         </p>
 
-        <div style={{display: 'flex', justifyContent: 'center', gap: 12, marginBottom: 40}}>
-          <button 
-            style={filterButtonStyle(filter === 'all')}
-            onClick={() => setFilter('all')}
-          >
-            All Projects
-          </button>
-          <button 
-            style={filterButtonStyle(filter === 'featured')}
-            onClick={() => setFilter('featured')}
-          >
-            Featured
-          </button>
+        {/* Filter */}
+        <div style={{ display: 'flex', gap: 10, marginBottom: 44 }}>
+          {['all', 'featured'].map(f => (
+            <button key={f} onClick={() => setFilter(f)} style={{
+              padding: '8px 20px', borderRadius: 20, cursor: 'pointer',
+              background: filter === f ? '#0EA5E9' : '#fff',
+              color: filter === f ? '#fff' : '#475569',
+              border: filter === f ? 'none' : '1.5px solid rgba(0,0,0,0.1)',
+              fontWeight: filter === f ? 700 : 500, fontSize: '0.86rem',
+              transition: 'all 0.2s ease', fontFamily: 'inherit'
+            }}>
+              {f === 'all' ? 'All Projects' : 'Featured'}
+            </button>
+          ))}
         </div>
 
-        <div style={HomepageStyle.projectsGrid}>
-          {filteredProjects.map((project, index) => {
-            const rotateDirection = index % 2 === 0 ? 5 : -5;
-            const shadowColors = {
-              'linear-gradient(135deg, #667eea 0%, #764ba2 100%)': 'rgba(102, 126, 234, 0.3)',
-              'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)': 'rgba(240, 147, 251, 0.3)',
-              'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)': 'rgba(79, 172, 254, 0.3)',
-              'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)': 'rgba(168, 237, 234, 0.3)'
-            };
-            
-            return (
-              <div 
-                key={project.id} 
-                style={{
-                  ...HomepageStyle.card,
-                  transition: 'all 0.4s ease',
-                  cursor: 'pointer'
-                }}
-                onClick={() => setSelected(project)}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = `translateY(-10px) rotateY(${rotateDirection}deg)`;
-                  e.currentTarget.style.boxShadow = `0 25px 50px ${shadowColors[project.image] || 'rgba(0,0,0,0.2)'}`;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0) rotateY(0deg)';
-                  e.currentTarget.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-                }}
-              >
+        {/* Grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 20 }}>
+          {displayed.map(proj => (
+            <div key={proj.id} className="card proj-card" onClick={() => setSelected(proj)}>
+              {/* Thumb */}
+              <div style={{ height: 180, background: proj.color, position: 'relative', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(105deg,transparent 40%,rgba(255,255,255,0.08) 50%,transparent 60%)', animation: 'shimmer 2.8s linear infinite' }}/>
+                <div className="proj-view" style={{
+                  position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.18)',
+                  opacity: 0, transition: 'opacity 0.3s ease',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: '0.86rem', fontWeight: 700, color: '#fff', letterSpacing: '0.08em'
+                }}>VIEW DETAILS</div>
                 <div style={{
-                  width: '100%',
-                  height: 200,
-                  background: project.image,
-                  borderRadius: 12,
-                  marginBottom: 20,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'white',
-                  fontSize: '1.2rem',
-                  fontWeight: 600,
-                  position: 'relative',
-                  overflow: 'hidden'
-                }}>
-                  <div style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background: 'linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.1) 75%)',
-                    backgroundSize: '20px 20px',
-                    animation: 'shimmer 2s linear infinite'
-                  }}></div>
-                  {project.title.split(' - ')[0] || project.title.split(' ')[0]}
+                  position: 'absolute', top: 12, left: 12,
+                  background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(6px)',
+                  padding: '3px 10px', borderRadius: 12,
+                  fontSize: '0.68rem', fontWeight: 600, color: '#475569'
+                }}>{proj.category}</div>
+              </div>
+
+              {/* Body */}
+              <div style={{ padding: '20px 20px 18px' }}>
+                <h3 style={{ color: '#1E293B', fontWeight: 700, fontSize: '1.05rem', marginBottom: 7 }}>{proj.title}</h3>
+                <p style={{ color: '#475569', fontSize: '0.86rem', lineHeight: 1.65, marginBottom: 14 }}>{proj.tagline}</p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 16 }}>
+                  {proj.techs.slice(0, 4).map(t => <span key={t} className="tag" style={{ fontSize: '0.72rem', padding: '3px 10px' }}>{t}</span>)}
+                  {proj.techs.length > 4 && <span className="tag" style={{ fontSize: '0.72px', padding: '3px 10px' }}>+{proj.techs.length - 4}</span>}
                 </div>
-                
-                <h3 style={{color: '#1e293b', marginBottom: 12}}>{project.title}</h3>
-                <p style={{color: '#64748b', lineHeight: 1.6, marginBottom: 20}}>{project.summary}</p>
-                
-                <div style={{display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 20}}>
-                  {project.technologies.slice(0, 3).map((tech, techIndex) => {
-                    const techColors = [
-                      'linear-gradient(135deg, #667eea, #764ba2)',
-                      'linear-gradient(135deg, #4facfe, #00f2fe)',
-                      'linear-gradient(135deg, #43e97b, #38f9d7)',
-                      'linear-gradient(135deg, #f093fb, #f5576c)',
-                      'linear-gradient(135deg, #fa709a, #fee140)',
-                      'linear-gradient(135deg, #a8edea, #fed6e3)'
-                    ];
-                    const techShadows = [
-                      'rgba(102, 126, 234, 0.3)',
-                      'rgba(79, 172, 254, 0.3)',
-                      'rgba(67, 233, 123, 0.3)',
-                      'rgba(240, 147, 251, 0.3)',
-                      'rgba(250, 112, 154, 0.3)',
-                      'rgba(168, 237, 234, 0.3)'
-                    ];
-                    
-                    return (
-                      <span 
-                        key={tech} 
-                        style={{
-                          padding: '6px 14px',
-                          background: techColors[techIndex % techColors.length],
-                          color: techIndex === 5 ? '#333' : 'white',
-                          borderRadius: 20,
-                          fontSize: '0.85rem',
-                          boxShadow: `0 4px 15px ${techShadows[techIndex % techShadows.length]}`,
-                          transition: 'transform 0.2s ease'
-                        }}
-                        onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
-                        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-                      >
-                        {tech}
-                      </span>
-                    );
-                  })}
-                </div>
-                
-                <button 
+                <button
+                  onClick={ev => { ev.stopPropagation(); setSelected(proj) }}
                   style={{
-                    ...HomepageStyle.button,
-                    width: '100%',
-                    fontSize: '0.9rem',
-                    padding: '12px 16px'
+                    width: '100%', padding: '10px', borderRadius: 8,
+                    background: 'rgba(14,165,233,0.07)', border: '1.5px solid rgba(14,165,233,0.2)',
+                    color: '#0EA5E9', fontSize: '0.84rem', fontWeight: 600,
+                    cursor: 'pointer', transition: 'all 0.2s ease', fontFamily: 'inherit'
                   }}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelected(project);
-                  }}
+                  onMouseEnter={e => e.currentTarget.style.background='rgba(14,165,233,0.14)'}
+                  onMouseLeave={e => e.currentTarget.style.background='rgba(14,165,233,0.07)'}
                 >
                   View Details
                 </button>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
+      </div>
 
-        {selected && (
-          <div style={modalStyle} onClick={() => setSelected(null)}>
-            <div style={modalContentStyle} onClick={e => e.stopPropagation()}>
-              <div style={{
-                width: '100%',
-                height: 250,
-                background: selected.image,
-                borderRadius: 12,
-                marginBottom: 24,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'white',
-                fontSize: '1.5rem',
-                fontWeight: 700,
-                position: 'relative',
-                overflow: 'hidden'
-              }}>
-                <div style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  background: 'linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.1) 75%)',
-                  backgroundSize: '20px 20px',
-                  animation: 'shimmer 2s linear infinite'
-                }}></div>
-                {selected.title}
-              </div>
+      {/* Modal */}
+      {selected && (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 9999,
+          background: 'rgba(0,0,0,0.45)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: 20, backdropFilter: 'blur(4px)', animation: 'fadeIn 0.2s ease'
+        }}
+          onClick={() => setSelected(null)}
+        >
+          <div onClick={e => e.stopPropagation()} style={{
+            width: '100%', maxWidth: 720,
+            background: '#fff', borderRadius: 18,
+            padding: '32px 36px', maxHeight: '90vh', overflowY: 'auto',
+            boxShadow: '0 24px 64px rgba(0,0,0,0.15)',
+            animation: 'scaleIn 0.22s ease'
+          }}>
+            <div style={{ height: 180, background: selected.color, borderRadius: 12, marginBottom: 22, position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(105deg,transparent 40%,rgba(255,255,255,0.08) 50%,transparent 60%)', animation: 'shimmer 2.8s linear infinite' }}/>
+              <h2 style={{ fontSize: 'clamp(1.2rem,3vw,1.6rem)', fontWeight: 800, color: '#fff', textShadow: '0 2px 8px rgba(0,0,0,0.3)', fontFamily: "'Space Grotesk',sans-serif", position: 'relative' }}>{selected.title}</h2>
+            </div>
 
-              <h3 style={{color: '#1e293b', marginBottom: 16, fontSize: '1.8rem'}}>{selected.title}</h3>
-              <p style={{color: '#64748b', lineHeight: 1.7, marginBottom: 24, fontSize: '1.1rem'}}>{selected.details}</p>
+            <p style={{ color: '#0EA5E9', fontSize: '0.76rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 8 }}>{selected.category}</p>
+            <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: 1.8, marginBottom: 22 }}>{selected.description}</p>
 
-              <div style={{marginBottom: 24}}>
-                <h4 style={{color: '#1e293b', marginBottom: 12}}>Technologies Used:</h4>
-                <div style={{display: 'flex', gap: 8, flexWrap: 'wrap'}}>
-                  {selected.technologies.map(tech => (
-                    <span key={tech} style={{
-                      padding: '6px 16px',
-                      background: 'linear-gradient(135deg, #e0f2fe, #f0f9ff)',
-                      color: '#0369a1',
-                      borderRadius: 20,
-                      fontSize: '0.9rem',
-                      fontWeight: 500,
-                      border: '1px solid #bae6fd'
-                    }}>
-                      {tech}
-                    </span>
+            {selected.metrics.length > 0 && (
+              <div style={{ marginBottom: 22 }}>
+                <h4 style={{ color: '#1E293B', fontSize: '0.82rem', fontWeight: 700, marginBottom: 12, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Model Performance</h4>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 10 }}>
+                  {selected.metrics.map(m => (
+                    <div key={m.label} style={{ background: 'rgba(14,165,233,0.06)', border: '1px solid rgba(14,165,233,0.15)', borderRadius: 10, padding: '12px 10px', textAlign: 'center' }}>
+                      <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0EA5E9', marginBottom: 3 }}>{m.value}</div>
+                      <div style={{ fontSize: '0.7rem', fontWeight: 700, color: '#94A3B8', letterSpacing: '0.08em' }}>{m.label}</div>
+                    </div>
                   ))}
                 </div>
+                {selected.metricsNote && <p style={{ color: '#94A3B8', fontSize: '0.76rem', marginTop: 7 }}>* {selected.metricsNote}</p>}
               </div>
+            )}
 
-              <div style={{display: 'flex', gap: 16, justifyContent: 'space-between', alignItems: 'center'}}>
-                <div style={{display: 'flex', gap: 12}}>
-                  <a href={selected.liveUrl} style={{
-                    ...HomepageStyle.button,
-                    textDecoration: 'none',
-                    display: 'inline-block'
-                  }}>
-                    🚀 Live Demo
-                  </a>
-                  <a href={selected.githubUrl} style={{
-                    ...HomepageStyle.button,
-                    background: 'transparent',
-                    color: '#0ea5e9',
-                    border: '2px solid #0ea5e9',
-                    textDecoration: 'none',
-                    display: 'inline-block'
-                  }}>
-                    📁 View Code
-                  </a>
-                </div>
-                <button 
-                  style={{
-                    padding: '12px 20px',
-                    background: '#f1f5f9',
-                    color: '#64748b',
-                    border: 'none',
-                    borderRadius: 8,
-                    cursor: 'pointer',
-                    fontWeight: 500
-                  }}
-                  onClick={() => setSelected(null)}
-                >
-                  Close
-                </button>
+            <div style={{ marginBottom: 22 }}>
+              <h4 style={{ color: '#1E293B', fontSize: '0.82rem', fontWeight: 700, marginBottom: 12, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Key Features</h4>
+              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                {selected.features.map((f, i) => (
+                  <li key={i} style={{ display: 'flex', gap: 9, alignItems: 'flex-start' }}>
+                    <span style={{ color: '#0EA5E9', fontSize: '0.78rem', marginTop: 2, flexShrink: 0 }}>▸</span>
+                    <span style={{ color: '#475569', fontSize: '0.87rem', lineHeight: 1.6 }}>{f}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div style={{ marginBottom: 24 }}>
+              <h4 style={{ color: '#1E293B', fontSize: '0.82rem', fontWeight: 700, marginBottom: 12, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Technologies</h4>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                {selected.techs.map(t => <span key={t} className="tag" style={{ padding: '5px 14px' }}>{t}</span>)}
               </div>
             </div>
+
+            <div style={{ display: 'flex', gap: 12, alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: 10 }}>
+                {selected.githubUrl && (
+                  <a href={selected.githubUrl} target="_blank" rel="noopener noreferrer" className="btn-blue" style={{ fontSize: '0.86rem', padding: '10px 18px' }}>
+                    View on GitHub
+                  </a>
+                )}
+                {selected.liveUrl && (
+                  <a href={selected.liveUrl} target="_blank" rel="noopener noreferrer" className="btn-ghost" style={{ fontSize: '0.86rem', padding: '9px 18px' }}>
+                    Live Demo
+                  </a>
+                )}
+              </div>
+              <button onClick={() => setSelected(null)} style={{
+                background: '#F1F5F9', border: '1.5px solid #E2E8F0',
+                borderRadius: 8, padding: '10px 18px', color: '#475569',
+                cursor: 'pointer', fontWeight: 500, fontSize: '0.86rem', fontFamily: 'inherit',
+                transition: 'all 0.2s ease'
+              }}
+                onMouseEnter={e => e.currentTarget.style.background='#E2E8F0'}
+                onMouseLeave={e => e.currentTarget.style.background='#F1F5F9'}
+              >
+                Close ✕
+              </button>
+            </div>
           </div>
-        )}
-      </section>
-    </div>
+        </div>
+      )}
+    </article>
   )
 }

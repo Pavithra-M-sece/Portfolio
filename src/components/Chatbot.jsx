@@ -37,14 +37,6 @@ export default function Chatbot({ botId = DEFAULT_BOT_ID, embedUrl, embedScriptU
   // Build iframe src for Chatbase
   const iframeSrc = `https://www.chatbase.co/chatbot-iframe/${botId}`;
 
-  const openChatbase = () => {
-    if (window.chatbaseConfig) {
-      window.chatbaseConfig.openChat();
-    } else {
-      setOpen(true);
-    }
-  };
-
   const containerStyle = {
     position: 'fixed',
     right: 24,
@@ -96,7 +88,6 @@ export default function Chatbot({ botId = DEFAULT_BOT_ID, embedUrl, embedScriptU
   return (
     <div style={containerStyle}>
       {open && (
-        /* If embedHtml provided, render it (dangerously) — useful when provider gives raw widget markup */
         embedHtml ? (
           <div style={iframeWrapper} dangerouslySetInnerHTML={{ __html: embedHtml }} />
         ) : (

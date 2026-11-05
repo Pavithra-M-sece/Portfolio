@@ -1,475 +1,189 @@
 import React from 'react'
-import { HomepageStyle } from '../styles/homepage-style'
+
+const INFO_CARDS = [
+  { icon: '⬡',    title: 'Data Engineering',    desc: 'Designing data workflows, exploring data processing, database technologies, and building reliable data-driven systems.' },
+  { icon: '◈',    title: 'Artificial Intelligence', desc: 'Exploring machine learning, NLP, Generative AI, and intelligent applications that solve real-world problems.' },
+  { icon: '⟨/⟩', title: 'Software Engineering', desc: 'Building practical applications using modern frontend, backend, database, and development technologies.' },
+]
+
+const TIMELINE = [
+  {
+    period: '2024 – 2028', current: true,
+    degree: 'B.E. Computer Science and Engineering',
+    institution: 'Sri Eshwar College of Engineering, Coimbatore',
+    note: 'Currently pursuing — focusing on software development, data engineering, and AI/ML.',
+  },
+  {
+    period: '2022 – 2024', current: false,
+    degree: 'Higher Secondary Certificate (HSC)',
+    institution: 'Kongu Nadu Matric Higher Secondary School',
+    note: 'Completed with 90.83 percentile. Focus on Mathematics and Computer Science.',
+  },
+  {
+    period: '2021 – 2022', current: false,
+    degree: 'Secondary School Leaving Certificate (SSLC)',
+    institution: 'Vidyaa Vikas Matric Higher Secondary School',
+    note: 'Completed with 91.6 percentile.',
+  },
+]
 
 export default function About() {
-  const timelineData = [
-    {
-      year: '2024-2028',
-      title: 'B.E Computer Science Engineering',
-      company: 'Sri Eshwar College of Engineering',
-      description: 'Currently pursuing Bachelor of Engineering in Computer Science, focusing on software development, data structures, and web technologies.'
-    },
-    {
-      year: '2022-2024',
-      title: 'Higher Secondary Certificate (HSC)',
-      company: 'Kongu Nadu Matric Higher Secondary School',
-      description: 'Completed higher secondary education with focus on Mathematics and Computer Science with 90.83 percentile.'
-    },
-    {
-      year: '2021-2022',
-      title: 'Secondary School Leaving Certificate (SSLC)',
-      company: 'Vidyaa Vikas Matric Higher Secondary School',
-      description: 'Completed secondary education with excellent academic performance with 91.6 percentile.'
-    }
-  ]
-
-  const timelineStyle = {
-    position: 'relative',
-    paddingLeft: 32,
-    borderLeft: '3px solid #0ea5e9',
-    marginTop: 40
-  }
-
-  const timelineItemStyle = {
-    marginBottom: 40,
-    position: 'relative'
-  }
-
-  const timelineDotStyle = {
-    position: 'absolute',
-    left: -8,
-    top: 8,
-    width: 16,
-    height: 16,
-    borderRadius: '50%',
-    background: 'linear-gradient(135deg, #0ea5e9, #06b6d4)',
-    border: '3px solid white',
-    boxShadow: '0 2px 8px rgba(14, 165, 233, 0.3)'
-  }
-
   return (
-    <div style={{...HomepageStyle.container, paddingTop: 40}}>
-      <style>
-        {`
-          @keyframes slideInLeft {
-            0% { transform: translateX(-100px); opacity: 0; }
-            100% { transform: translateX(0); opacity: 1; }
-          }
-          @keyframes slideInRight {
-            0% { transform: translateX(100px); opacity: 0; }
-            100% { transform: translateX(0); opacity: 1; }
-          }
-          @keyframes fadeInUp {
-            0% { transform: translateY(50px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
-          }
-          @keyframes colorCycle {
-            0%, 15% { background: radial-gradient(circle, #667eea, transparent); }
-            20%, 35% { background: radial-gradient(circle, #f093fb, transparent); }
-            40%, 55% { background: radial-gradient(circle, #4facfe, transparent); }
-            60%, 75% { background: radial-gradient(circle, #43e97b, transparent); }
-            80%, 95% { background: radial-gradient(circle, #fa709a, transparent); }
-            100% { background: radial-gradient(circle, #667eea, transparent); }
-          }
-          @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(14, 165, 233, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(14, 165, 233, 0.6); }
-          }
-          @keyframes wiggle {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-5deg); }
-            75% { transform: rotate(5deg); }
-          }
-          .animate-slide-left { animation: slideInLeft 0.8s ease-out; }
-          .animate-slide-right { animation: slideInRight 0.8s ease-out; }
-          .animate-fade-up { animation: fadeInUp 0.6s ease-out; }
-        `}
-      </style>
-      <section style={HomepageStyle.section}>
-        <h2 style={HomepageStyle.sectionTitle}>About Me</h2>
-        
-        <div style={{
-          ...HomepageStyle.card,
-          background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,248,255,0.9) 100%)',
-          backdropFilter: 'blur(10px)',
-          border: '1px solid rgba(255,255,255,0.2)',
-          boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
-        }}>
-          <div style={{display: 'grid', gridTemplateColumns: '1fr 300px', gap: 40, alignItems: 'center'}}>
-            <div className="animate-slide-left">
-              <h3 style={{
-                color: '#0ea5e9', 
-                marginBottom: 20, 
-                fontSize: '1.5rem',
-                background: 'linear-gradient(135deg, #0ea5e9, #06b6d4)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                fontWeight: 700
-              }}>Hello! I'm Pavithra M</h3>
-              <p style={{fontSize: '1.1rem', lineHeight: 1.8, marginBottom: 24}}>
-                I'm a passionate Computer Science Engineering student at Sri Eshwar College of Engineering with a strong foundation in 
-                programming and web development. My journey in tech started with solving coding problems, and it has evolved into 
-                building complete web applications.
-              </p>
-              <p style={{fontSize: '1.1rem', lineHeight: 1.8, marginBottom: 24}}>
-                I specialize in Python, Django, and web technologies. I'm an active competitive programmer with 1200+ problems solved 
-                on various platforms and have built several projects including medical diagnosis systems and e-learning platforms.
-              </p>
-              <div style={{display: 'flex', gap: 16, flexWrap: 'wrap'}}>
-                <span style={{
-                  padding: '10px 20px', 
-                  background: 'linear-gradient(135deg, #667eea, #764ba2)', 
-                  color: 'white', 
-                  borderRadius: 25, 
-                  fontSize: '0.9rem', 
-                  fontWeight: 600,
-                  boxShadow: '0 8px 20px rgba(102, 126, 234, 0.3)',
-                  transition: 'all 0.3s ease',
-                  cursor: 'pointer'
-                }} onMouseEnter={(e) => {
-                  e.target.style.transform = 'translateY(-3px)';
-                  e.target.style.boxShadow = '0 12px 25px rgba(102, 126, 234, 0.4)';
-                }} onMouseLeave={(e) => {
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.boxShadow = '0 8px 20px rgba(102, 126, 234, 0.3)';
-                }}>Problem Solver</span>
-                <span style={{
-                  padding: '10px 20px', 
-                  background: 'linear-gradient(135deg, #f093fb, #f5576c)', 
-                  color: 'white', 
-                  borderRadius: 25, 
-                  fontSize: '0.9rem', 
-                  fontWeight: 600,
-                  boxShadow: '0 8px 20px rgba(240, 147, 251, 0.3)',
-                  transition: 'all 0.3s ease',
-                  cursor: 'pointer'
-                }} onMouseEnter={(e) => {
-                  e.target.style.transform = 'translateY(-3px)';
-                  e.target.style.boxShadow = '0 12px 25px rgba(240, 147, 251, 0.4)';
-                }} onMouseLeave={(e) => {
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.boxShadow = '0 8px 20px rgba(240, 147, 251, 0.3)';
-                }}>Team Player</span>
-                <span style={{
-                  padding: '10px 20px', 
-                  background: 'linear-gradient(135deg, #43e97b, #38f9d7)', 
-                  color: 'white', 
-                  borderRadius: 25, 
-                  fontSize: '0.9rem', 
-                  fontWeight: 600,
-                  boxShadow: '0 8px 20px rgba(67, 233, 123, 0.3)',
-                  transition: 'all 0.3s ease',
-                  cursor: 'pointer'
-                }} onMouseEnter={(e) => {
-                  e.target.style.transform = 'translateY(-3px)';
-                  e.target.style.boxShadow = '0 12px 25px rgba(67, 233, 123, 0.4)';
-                }} onMouseLeave={(e) => {
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.boxShadow = '0 8px 20px rgba(67, 233, 123, 0.3)';
-                }}>Continuous Learner</span>
-              </div>
+    <article style={{ background: 'var(--bg-primary)', padding: '90px 0 72px' }}>
+      <style>{`
+        .about-photo { transition: transform 0.4s ease, filter 0.4s ease; }
+        .about-photo:hover { transform: scale(1.03); filter: brightness(1.06) contrast(1.04); }
+        @media(max-width:768px){ .about-grid{ grid-template-columns:1fr !important; } }
+      `}</style>
+
+      <div className="container">
+        <span className="section-label">About Me</span>
+        <h2 className="section-title">Curiosity Drives My Engineering Journey.</h2>
+        <p style={{ fontSize: '1rem', color: '#475569', lineHeight: 1.8, maxWidth: 660, marginBottom: 56 }}>
+          I am a Computer Science Engineering student interested in building intelligent, scalable,
+          and data-driven applications. My learning journey spans software development, data engineering,
+          artificial intelligence, and Generative AI. Through internships, projects, and technical
+          challenges, I continuously explore how technology can address practical problems.
+        </p>
+
+        {/* Intro grid */}
+        <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '240px 1fr', gap: 44, alignItems: 'flex-start', marginBottom: 72 }}>
+          {/* Photo */}
+          <div>
+            <div className="card" style={{ padding: 10, borderRadius: 18 }}>
+              <img
+                src="/photo.jpg"
+                alt="Pavithra M"
+                className="about-photo"
+                style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover', borderRadius: 12, display: 'block' }}
+                onError={e => {
+                  e.currentTarget.style.display = 'none'
+                  const fb = e.currentTarget.parentElement
+                  fb.style.display = 'flex'; fb.style.alignItems = 'center'
+                  fb.style.justifyContent = 'center'; fb.style.height = '300px'
+                  fb.innerHTML = '<span style="font-size:4rem;font-weight:800;color:#0EA5E9;font-family:Space Grotesk,sans-serif">PM</span>'
+                }}
+              />
             </div>
-            <div className="animate-slide-right" style={{textAlign: 'center'}}>
-              <div style={{
-                position: 'relative',
-                width: 250,
-                height: 250,
-                margin: '0 auto'
-              }}>
-                <div style={{
-                  position: 'absolute',
-                  inset: -15,
-                  borderRadius: '50%',
-                  background: 'radial-gradient(circle, #667eea, transparent)',
-                  animation: 'colorCycle 8s ease-in-out infinite',
-                  filter: 'blur(12px)',
-                  opacity: 0.7
-                }}></div>
-                <img 
-                  src="/photo.jpg" 
-                  alt="Pavithra M" 
-                  style={{
-                    width: 250,
-                    height: 250,
-                    borderRadius: '50%',
-                    objectFit: 'cover',
-                    border: '6px solid rgba(255, 255, 255, 0.9)',
-                    position: 'relative',
-                    zIndex: 1,
-                    transition: 'all 0.4s ease',
-                    cursor: 'pointer'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.transform = 'scale(1.05)';
-                    e.target.style.filter = 'brightness(1.1) contrast(1.1)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.transform = 'scale(1)';
-                    e.target.style.filter = 'brightness(1) contrast(1)';
-                  }}
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                    e.currentTarget.parentElement.nextSibling.style.display = 'flex';
-                  }}
-                />
-              </div>
-              <div style={{
-                position: 'relative',
-                width: 250,
-                height: 250,
-                margin: '0 auto',
-                display: 'none'
-              }}>
-                <div style={{
-                  position: 'absolute',
-                  inset: -10,
-                  borderRadius: '50%',
-                  background: 'conic-gradient(from 0deg, #0ea5e9, #06b6d4, #0891b2, #0ea5e9)',
-                  animation: 'spin 3s linear infinite',
-                  filter: 'blur(8px)',
-                  opacity: 0.8
-                }}></div>
-                <div style={{
-                  width: 250,
-                  height: 250,
-                  borderRadius: '50%',
-                  background: 'linear-gradient(135deg, #0ea5e9, #06b6d4)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'white',
-                  fontSize: '4rem',
-                  fontWeight: 800,
-                  border: '4px solid rgba(255, 255, 255, 0.9)',
-                  position: 'relative',
-                  zIndex: 1
-                }}>
-                  PM
-                </div>
-              </div>
-              
-              <div style={{marginTop: 24}}>
-                <h4 style={{color: '#1e293b', marginBottom: 16}}>Contact Information</h4>
-                <div style={{display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'center'}}>
-                  <a href="tel:+919677558590" style={{color: '#0ea5e9', textDecoration: 'none', fontWeight: 500}}>
-                    +91 9677558590
-                  </a>
-                  <a href="mailto:pavithra.m2024cse@sece.ac.in?subject=Contact from Portfolio" style={{color: '#0ea5e9', textDecoration: 'none', fontWeight: 500}}>
-                    pavithra.m2024cse@sece.ac.in
-                  </a>
-                  <a href="https://www.linkedin.com/in/pavithra-m-005a70333/" target="_blank" rel="noopener noreferrer" style={{color: '#0ea5e9', textDecoration: 'none', fontWeight: 500}}>
-                    LinkedIn Profile
-                  </a>
-                  <a href="https://github.com/Pavithra-M-sece" target="_blank" rel="noopener noreferrer" style={{color: '#0ea5e9', textDecoration: 'none', fontWeight: 500}}>
-                    GitHub Profile
+          </div>
+
+          {/* Info */}
+          <div>
+            <h3 style={{ fontSize: '1.55rem', fontWeight: 800, fontFamily: "'Space Grotesk',sans-serif", marginBottom: 4 }}>
+              Pavithra M
+            </h3>
+            <p style={{ color: '#0EA5E9', fontWeight: 600, fontSize: '0.92rem', marginBottom: 18 }}>
+              Data Engineering · AI/ML · Software Development
+            </p>
+            <p style={{ fontSize: '0.96rem', lineHeight: 1.8, color: '#475569', marginBottom: 14 }}>
+              I'm a passionate Computer Science Engineering student at Sri Eshwar College of Engineering
+              with a strong foundation in programming and web development. My journey in tech started
+              with solving coding problems, and it has evolved into building complete web applications
+              and intelligent data-driven systems.
+            </p>
+            <p style={{ fontSize: '0.96rem', lineHeight: 1.8, color: '#475569', marginBottom: 24 }}>
+              I specialise in Python, Data Engineering, and AI technologies. I'm an active competitive
+              programmer with 1500+ problems solved across platforms and have built several projects
+              including AI-powered analytics platforms and RAG-based assistants.
+            </p>
+
+            <div style={{ display: 'flex', gap: 9, flexWrap: 'wrap', marginBottom: 24 }}>
+              {['Problem Solver', 'Team Player', 'Continuous Learner', 'Open Source Enthusiast'].map(t => (
+                <span key={t} className="tag" style={{ fontSize: '0.82rem', padding: '5px 14px' }}>{t}</span>
+              ))}
+            </div>
+
+            {/* Quick contact */}
+            <div className="card" style={{ padding: '16px 18px' }}>
+              {[
+                { label: 'Email',    val: 'pavithra.m2024cse@sece.ac.in', href: 'mailto:pavithra.m2024cse@sece.ac.in' },
+                { label: 'LinkedIn', val: 'linkedin.com/in/pavithra-m-005a70333', href: 'https://www.linkedin.com/in/pavithra-m-005a70333/' },
+                { label: 'GitHub',   val: 'github.com/Pavithra-M-sece', href: 'https://github.com/Pavithra-M-sece' },
+              ].map(c => (
+                <div key={c.label} style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 8 }}>
+                  <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#0EA5E9', width: 52, flexShrink: 0, letterSpacing: '0.04em' }}>{c.label}</span>
+                  <a href={c.href} target={c.href.startsWith('mailto') ? undefined : '_blank'} rel="noopener noreferrer"
+                     style={{ color: '#475569', fontSize: '0.84rem', textDecoration: 'none' }}
+                     onMouseEnter={e => e.currentTarget.style.color='#0EA5E9'}
+                     onMouseLeave={e => e.currentTarget.style.color='#475569'}>
+                    {c.val}
                   </a>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
 
-        <div className="animate-fade-up" style={{marginTop: 60}}>
-          <h3 style={{
-            fontSize: '2rem', 
-            marginBottom: 20, 
-            textAlign: 'center', 
-            background: 'linear-gradient(135deg, #667eea, #764ba2)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            fontWeight: 700
-          }}>My Journey</h3>
-          <div style={timelineStyle}>
-            {timelineData.map((item, index) => (
-              <div 
-                key={index} 
-                style={{
-                  ...timelineItemStyle,
-                  transition: 'all 0.3s ease',
-                  cursor: 'pointer'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateX(10px)';
-                  e.currentTarget.style.background = 'rgba(14, 165, 233, 0.05)';
-                  e.currentTarget.style.borderRadius = '12px';
-                  e.currentTarget.style.padding = '16px';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateX(0)';
-                  e.currentTarget.style.background = 'transparent';
-                  e.currentTarget.style.padding = '0';
-                }}
-              >
-                <div style={timelineDotStyle}></div>
-                <div style={{marginLeft: 24}}>
-                  <div style={{display: 'flex', alignItems: 'center', gap: 16, marginBottom: 8}}>
-                    <span style={{
-                      padding: '4px 12px',
-                      background: 'linear-gradient(135deg, #0ea5e9, #06b6d4)',
-                      color: 'white',
-                      borderRadius: 12,
-                      fontSize: '0.9rem',
-                      fontWeight: 600
-                    }}>
-                      {item.year}
-                    </span>
-                    <h4 style={{margin: 0, color: '#1e293b', fontSize: '1.3rem'}}>{item.title}</h4>
-                  </div>
-                  <p style={{color: '#0ea5e9', fontWeight: 600, marginBottom: 8}}>{item.company}</p>
-                  <p style={{color: '#64748b', lineHeight: 1.6}}>{item.description}</p>
+        {/* Focus cards */}
+        <div style={{ marginBottom: 72 }}>
+          <h3 style={{ fontSize: '0.74rem', fontWeight: 700, color: '#94A3B8', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 20 }}>
+            Focus Areas
+          </h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 16 }}>
+            {INFO_CARDS.map(card => (
+              <div key={card.title} className="card" style={{ padding: '24px 22px' }}>
+                <div style={{
+                  width: 40, height: 40, background: 'rgba(14,165,233,0.08)',
+                  border: '1px solid rgba(14,165,233,0.2)', borderRadius: 9,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: '1rem', color: '#0EA5E9', fontFamily: 'monospace',
+                  fontWeight: 700, marginBottom: 14
+                }}>
+                  {card.icon}
                 </div>
+                <h4 style={{ color: '#1E293B', fontWeight: 700, fontSize: '0.96rem', marginBottom: 8 }}>{card.title}</h4>
+                <p style={{ color: '#475569', fontSize: '0.87rem', lineHeight: 1.7, margin: 0 }}>{card.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
-        <div style={{marginTop: 60}}>
-          <h3 style={{fontSize: '2rem', marginBottom: 32, textAlign: 'center', color: '#1e293b'}}>Recent Achievements</h3>
-          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 32, marginBottom: 60}}>
-            <div style={{...HomepageStyle.card, textAlign: 'center'}}>
-              <div style={{fontSize: '3rem', marginBottom: 16}}>🏆</div>
-              <h4 style={{color: '#1e293b', marginBottom: 12}}>AI Datathon Finalist</h4>
-              <p style={{color: '#64748b', lineHeight: 1.6}}>
-                Reached the final round in AI Datathon conducted by SECE (November 2025)
-              </p>
-            </div>
-            <div style={{...HomepageStyle.card, textAlign: 'center'}}>
-              <div style={{fontSize: '3rem', marginBottom: 16}}>💻</div>
-              <h4 style={{color: '#1e293b', marginBottom: 12}}>SICPC Second Round</h4>
-              <p style={{color: '#64748b', lineHeight: 1.6}}>
-                Selected to the second round in SICPC conducted by SECE (May 2025)
-              </p>
-            </div>
-            <div style={{...HomepageStyle.card, textAlign: 'center'}}>
-              <div style={{fontSize: '3rem', marginBottom: 16}}>🚀</div>
-              <h4 style={{color: '#1e293b', marginBottom: 12}}>SELFE Hackathon</h4>
-              <p style={{color: '#64748b', lineHeight: 1.6}}>
-                Selected to the second round in SELFE Hackathon conducted by SECE (October 2024)
-              </p>
-            </div>
+        {/* Education timeline */}
+        <div>
+          <h3 style={{ fontSize: '0.74rem', fontWeight: 700, color: '#94A3B8', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 24 }}>
+            Education
+          </h3>
+          <div style={{ position: 'relative', maxWidth: 740 }}>
+            <div style={{
+              position: 'absolute', left: 18, top: 0, bottom: 0, width: 2,
+              background: 'linear-gradient(to bottom, #0EA5E9, rgba(14,165,233,0.06))',
+              borderRadius: 2
+            }}/>
+            {TIMELINE.map((item, i) => (
+              <div key={i} style={{ display: 'flex', gap: 26, marginBottom: i < TIMELINE.length - 1 ? 32 : 0 }}>
+                <div style={{
+                  width: 36, height: 36, flexShrink: 0, borderRadius: '50%',
+                  background: item.current ? 'rgba(14,165,233,0.1)' : '#fff',
+                  border: `2.5px solid ${item.current ? '#0EA5E9' : 'rgba(0,0,0,0.15)'}`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1, marginTop: 2,
+                  boxShadow: item.current ? '0 2px 10px rgba(14,165,233,0.2)' : 'none'
+                }}>
+                  <div style={{ width: 9, height: 9, borderRadius: '50%', background: item.current ? '#0EA5E9' : '#CBD5E1' }}/>
+                </div>
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4, flexWrap: 'wrap' }}>
+                    <span style={{
+                      fontSize: '0.72rem', fontWeight: 700,
+                      color: item.current ? '#0EA5E9' : '#475569',
+                      background: item.current ? 'rgba(14,165,233,0.08)' : 'rgba(0,0,0,0.04)',
+                      border: `1px solid ${item.current ? 'rgba(14,165,233,0.2)' : 'rgba(0,0,0,0.08)'}`,
+                      padding: '3px 10px', borderRadius: 12
+                    }}>{item.period}</span>
+                    {item.current && (
+                      <span style={{ fontSize: '0.68rem', fontWeight: 700, color: '#0EA5E9', background: 'rgba(14,165,233,0.08)', padding: '2px 8px', borderRadius: 10 }}>
+                        CURRENT
+                      </span>
+                    )}
+                  </div>
+                  <h4 style={{ color: '#1E293B', fontWeight: 700, fontSize: '0.96rem', marginBottom: 2 }}>{item.degree}</h4>
+                  <p style={{ color: '#0EA5E9', fontSize: '0.85rem', fontWeight: 600, marginBottom: 3 }}>{item.institution}</p>
+                  <p style={{ color: '#475569', fontSize: '0.83rem', lineHeight: 1.6, margin: 0 }}>{item.note}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-
-        <div style={{marginTop: 60}}>
-          <h3 style={{fontSize: '2rem', marginBottom: 32, textAlign: 'center', color: '#1e293b'}}>What Drives Me</h3>
-          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 32}}>
-            <div style={{...HomepageStyle.card, textAlign: 'center'}}>
-              <div style={{fontSize: '3rem', marginBottom: 16}}>🚀</div>
-              <h4 style={{color: '#1e293b', marginBottom: 12}}>Innovation</h4>
-              <p style={{color: '#64748b', lineHeight: 1.6}}>
-                I love exploring new technologies and finding creative solutions to complex challenges.
-              </p>
-            </div>
-            <div style={{...HomepageStyle.card, textAlign: 'center'}}>
-              <div style={{fontSize: '3rem', marginBottom: 16}}>🎯</div>
-              <h4 style={{color: '#1e293b', marginBottom: 12}}>Quality</h4>
-              <p style={{color: '#64748b', lineHeight: 1.6}}>
-                Every line of code I write is crafted with attention to detail and best practices in mind.
-              </p>
-            </div>
-            <div style={{...HomepageStyle.card, textAlign: 'center'}}>
-              <div style={{fontSize: '3rem', marginBottom: 16}}>🤝</div>
-              <h4 style={{color: '#1e293b', marginBottom: 12}}>Collaboration</h4>
-              <p style={{color: '#64748b', lineHeight: 1.6}}>
-                I believe the best solutions come from working together and sharing knowledge.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div style={{marginTop: 60}}>
-          <h3 style={{fontSize: '2rem', marginBottom: 32, textAlign: 'center', color: '#1e293b'}}>Competitive Programming Profile</h3>
-          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 24}}>
-            <a href="https://leetcode.com/u/pavithra_168/" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}>
-              <div style={{...HomepageStyle.card, padding: 24, cursor: 'pointer', transition: 'all 0.3s ease'}} 
-                   onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
-                   onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
-                <div style={{display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16}}>
-                  <div style={{width: 40, height: 40, background: '#FFA116', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', color: 'white', fontWeight: 'bold'}}>LC</div>
-                  <h4 style={{color: '#1e293b', margin: 0, fontSize: '1.3rem'}}>LeetCode</h4>
-                </div>
-                <p style={{color: '#0ea5e9', fontWeight: 600, marginBottom: 8, fontSize: '1.1rem'}}>80+ Problems Solved</p>
-                <p style={{color: '#64748b', fontSize: '0.95rem', marginBottom: 4}}>Global Rank: 1,418,175</p>
-                <p style={{color: '#64748b', fontSize: '0.9rem'}}>Username: pavithra_168</p>
-              </div>
-            </a>
-            
-            <a href="https://www.skillrack.com/faces/resume.xhtml?id=515019&key=ec99021f0f8e3a4ae428457e5a8023dc40176ed0" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}>
-              <div style={{...HomepageStyle.card, padding: 24, cursor: 'pointer', transition: 'all 0.3s ease'}}
-                   onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
-                   onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
-                <div style={{display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16}}>
-                  <div style={{width: 40, height: 40, background: '#4CAF50', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', color: 'white', fontWeight: 'bold'}}>SR</div>
-                  <h4 style={{color: '#1e293b', margin: 0, fontSize: '1.3rem'}}>SkillRack</h4>
-                </div>
-                <p style={{color: '#0ea5e9', fontWeight: 600, marginBottom: 8, fontSize: '1.1rem'}}>1200+ Problems Solved</p>
-                <p style={{color: '#64748b', fontSize: '0.95rem', marginBottom: 4}}>365 Bronze Medal 🥉</p>
-                <p style={{color: '#64748b', fontSize: '0.9rem'}}>Rank: 12,382</p>
-              </div>
-            </a>
-            
-            <a href="https://www.geeksforgeeks.org/user/pavithramcw0v/" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}>
-              <div style={{...HomepageStyle.card, padding: 24, cursor: 'pointer', transition: 'all 0.3s ease'}}
-                   onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
-                   onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
-                <div style={{display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16}}>
-                  <div style={{width: 40, height: 40, background: '#0F9D58', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1rem', color: 'white', fontWeight: 'bold'}}>GFG</div>
-                  <h4 style={{color: '#1e293b', margin: 0, fontSize: '1.3rem'}}>GeeksforGeeks</h4>
-                </div>
-                <p style={{color: '#0ea5e9', fontWeight: 600, marginBottom: 8, fontSize: '1.1rem'}}>Coding Score: 10+</p>
-                <p style={{color: '#64748b', fontSize: '0.95rem', marginBottom: 4}}>Rank: 800</p>
-                <p style={{color: '#64748b', fontSize: '0.9rem'}}>Username: pavithramcw0v</p>
-              </div>
-            </a>
-            
-            <a href="https://www.hackerrank.com/profile/pavithra_m2024c1" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}>
-              <div style={{...HomepageStyle.card, padding: 24, cursor: 'pointer', transition: 'all 0.3s ease'}}
-                   onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
-                   onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
-                <div style={{display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16}}>
-                  <div style={{width: 40, height: 40, background: '#00EA64', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', color: 'white', fontWeight: 'bold'}}>HR</div>
-                  <h4 style={{color: '#1e293b', margin: 0, fontSize: '1.3rem'}}>HackerRank</h4>
-                </div>
-                <p style={{color: '#0ea5e9', fontWeight: 600, marginBottom: 8, fontSize: '1.1rem'}}>Multiple Star Ratings</p>
-                <p style={{color: '#64748b', fontSize: '0.95rem', marginBottom: 4}}>3 ⭐ in C & Python</p>
-                <p style={{color: '#64748b', fontSize: '0.9rem'}}>1 ⭐ in Problem Solving, C++ & SQL</p>
-              </div>
-            </a>
-            
-            <a href="https://www.codechef.com/users/pavithra_1004" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none'}}>
-              <div style={{...HomepageStyle.card, padding: 24, cursor: 'pointer', transition: 'all 0.3s ease'}}
-                   onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-4px)'}
-                   onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
-                <div style={{display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16}}>
-                  <div style={{width: 40, height: 40, background: '#5B4638', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', color: 'white'}}>CC</div>
-                  <h4 style={{color: '#1e293b', margin: 0, fontSize: '1.3rem'}}>CodeChef</h4>
-                </div>
-                <p style={{color: '#0ea5e9', fontWeight: 600, marginBottom: 8, fontSize: '1.1rem'}}>170+ Problems Solved</p>
-                <p style={{color: '#64748b', fontSize: '0.95rem', marginBottom: 4}}>Active Competitive Programmer</p>
-                <p style={{color: '#64748b', fontSize: '0.9rem'}}>Username: pavithra_1004</p>
-              </div>
-            </a>
-          </div>
-          
-          <div style={{textAlign: 'center', marginTop: 40, padding: 32, background: 'rgba(14, 165, 233, 0.05)', borderRadius: 16}}>
-            <h4 style={{color: '#1e293b', marginBottom: 16}}>Total Problem Solving Stats</h4>
-            <div style={{display: 'flex', justifyContent: 'center', gap: 40, flexWrap: 'wrap'}}>
-              <div style={{textAlign: 'center'}}>
-                <div style={{fontSize: '2rem', fontWeight: 700, color: '#0ea5e9'}}>1450+</div>
-                <div style={{color: '#64748b', fontSize: '0.9rem'}}>Total Problems</div>
-              </div>
-              <div style={{textAlign: 'center'}}>
-                <div style={{fontSize: '2rem', fontWeight: 700, color: '#06b6d4'}}>5</div>
-                <div style={{color: '#64748b', fontSize: '0.9rem'}}>Platforms</div>
-              </div>
-              <div style={{textAlign: 'center'}}>
-                <div style={{fontSize: '2rem', fontWeight: 700, color: '#0891b2'}}>365</div>
-                <div style={{color: '#64748b', fontSize: '0.9rem'}}>Bronze Medals</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+      </div>
+    </article>
   )
 }
